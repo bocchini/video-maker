@@ -6,5 +6,7 @@
   "repository": "https://github.com/bocchini/video-maker.git",
   "author": "Américo L Bocchini <albocchini@gmail.com>",
   "license": "MIT",
-  "private": false
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
