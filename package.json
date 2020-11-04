@@ -1,0 +1,10 @@
+{
+  "name": "video-maker",
+  "version": "1.0.0",
+  "description": "\"Project to make videos\"",
+  "main": "index.js",
+  "repository": "https://github.com/bocchini/video-maker.git",
+  "author": "Américo L Bocchini <albocchini@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
