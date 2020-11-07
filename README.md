@@ -3,7 +3,7 @@
 Project to make videos
 
 **Project Author**
-Felipe Dechamps
+Author the vídeos: Felipe Dechamps
 
 **API KEY**
-Rename .gitkeep to credential.json and replace the api key for your api key.
+Into in folder credentials, rename .gitkeep to credential.json and replace the api key for your api key.
