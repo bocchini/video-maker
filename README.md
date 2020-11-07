@@ -6,5 +6,4 @@ Project to make videos
 Felipe Dechamps
 
 **API KEY**
-Remove the .ren and leave credential.json.
-Replace the api key for your api key.
+Rename .gitkeep to credential.json and replace the api key for your api key.
