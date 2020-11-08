@@ -6,11 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-#Folder credentials
-credentials/*
-!credentials/.gitkeep
-
-
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -107,3 +102,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+# credentials
+credentials/*.json
+
+content.json
+
+content/*.png
+content/*.jpg
+content/*.js
+content/*.mov
+Adobe After Effects Auto-Save
+template.aep Logs
+.DS_Store
