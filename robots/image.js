@@ -1,6 +1,7 @@
 const  { google }  = require('googleapis');
 const customSearch = google.customsearch('v1');
 
+const imageDownloader = require('image-downloader');
 
 const googleSearchCredentials = require('../credentials/google-search.json');
 
@@ -12,6 +13,7 @@ async function robot() {
   const content = state.load();
 
   await fetchImagesOfAllSentences(content);
+  await downloadAllImages(content);
   state.save(content);
 
   async function fetchImagesOfAllSentences(content) {
@@ -33,17 +35,46 @@ async function robot() {
       num: 2
     });
 
-    if(!response){
-      console.log('Response is empty');
+    //Evito que algumas buscas retorne com undefined
+    try{
+    const imagesUrl = response.data.items.map((item) => {
+      return item.link
+      });
+      return imagesUrl;
+    }catch(error){
+      return new Error(error);
     }
+   
+  }
 
-    const imageUrl =  response.data.items.map((item) => {
-     return item.link
-    });
+  async function downloadAllImages(content) {
+    content.downloadAllImages = [];
 
-    console.log(imageUrl);
+    for(let sentenceIndex = 0; sentenceIndex < content.sentences.length; sentenceIndex++ ){
+      const images = content.sentences[sentenceIndex].images;
 
-     return imageUrl;
+      for(let imageIndex = 0; imageIndex < images.length; imageIndex ++){
+        const imageUrl = images[imageIndex];
+
+        try {
+          if(content.downloadAllImages.includes(imageUrl)){
+            throw new Error('Imagem já foi baixada');
+          }
+          await downloadAndSave(imageUrl, `${sentenceIndex}-original.png`);
+          console.log('> Baixou images ' + imageUrl);
+          break;
+        } catch (error) {
+          console.log(`Erro ao baixar (${imageUrl}) : Erro: ${error}`);
+        }
+      }
+    }
+  }
+
+  async function downloadAndSave(url, fileName) {
+    return imageDownloader.image({
+      url, url,
+      dest: `./content/${fileName}`
+    })
   }
 
 }
