@@ -9,6 +9,7 @@ const robots = {
 async function start() {
   robots.userInput();
   await robots.text();
+  
   await robots.image();
 
   const content = robots.state.load();
